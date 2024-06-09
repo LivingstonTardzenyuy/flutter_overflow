@@ -1,164 +1,91 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+void main() {runApp(const MyApp());}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Counter',
+      title: 'Provider 02',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+        primarySwatch: Colors.blue,
       ),
       home: const MyHomePage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
+class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key});
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int counter = 0;
-
-  void increment() {
-    setState(() {
-      counter++;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title:const Text('My Counter'),
-      ),
+        title: Text(
+          '-name: Dog name',
+          style: TextStyle(
+            color: Colors.white
+          ),
+          ),
+        backgroundColor: Colors.blue,
+        ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Container(
-              color: Colors.blue[100],
-              padding: const EdgeInsets.all(20.0),
-              child: const Text(
-                'My HomePage',
-                style: TextStyle(
-                  fontSize: 24.0
-                ),
-              ),
+            Text(
+              '- name: Dog name',
+              style: TextStyle(fontSize: 20.0),
             ),
-
-            const SizedBox(height: 20.0,),
-            const CounterA(
-              counter: counter,
-              increment: increment,
-            ),
-            const SizedBox(height: 20.0,),
-            const Middle(
-              counter: counter
-            ),
+            SizedBox(height: 10.0,),
+            BreadAndAge(),
           ],
         ),
       ),
-    );
+      );
   }
 }
 
-class CounterA extends StatelessWidget {
-  const CounterA({super.key, required this.counter});
-  final int counter;
+
+
+class BreadAndAge extends StatelessWidget {
+  const BreadAndAge({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.red[100],
-      padding: const EdgeInsets.all(20.0),
-      child: Column(
-        children: <Widget>[
-           Text(
-            '$counter',
-            style: TextStyle(
-              fontSize: 48.0
-            ),
+    return Column(
+      children: [
+        Text(
+            '- bread: Dog breed',
+          style: TextStyle(
+            fontSize: 20.0
           ),
-
-          ElevatedButton(
-              onPressed: increment,
-              child: Text(
-                'Increment',
-                style: TextStyle(
-                  fontSize: 20.0
-                ),
-              )),
-        ],
-      ),
-    );
-  }
-
-}
-
-
-
-class Middle extends StatelessWidget {
-  const Middle({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Colors.grey[200],
-      padding: const EdgeInsets.all(20.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          const CounterB(),
-          const SizedBox(height: 20.0,),
-          Sibling(),
-        ],
-      ),
-    );
-  }
-}
-
-class CounterB extends StatelessWidget {
-  const CounterB({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Colors.yellow[100],
-      padding: const EdgeInsets.all(10.0),
-      child: Text(
-        '0',
-        style: TextStyle(fontSize: 24.0),
-      ),
+        ),
+        SizedBox(height: 10.0,),
+        Age(),
+      ],
     );
   }
 }
 
 
-class Sibling extends StatelessWidget {
-  const Sibling({super.key});
+class Age extends StatelessWidget {
+  const Age({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.orange[100],
-      padding: const EdgeInsets.all(10.0),
-      child: Text(
-        'Sibling',
-        style: TextStyle(fontSize: 24),
-      ),
+    return const Column(
+      children: [
+        Text(
+          '-age: your age',
+          style: TextStyle(fontSize: 20),
+        )
+      ],
     );
   }
 }
