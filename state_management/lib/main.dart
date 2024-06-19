@@ -52,7 +52,11 @@ class HomePage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          Text('hellow world'),
+          Consumer<BreadCrumbProvider>(builder: (context, value, child){
+            return BreadCrumbsWidget(
+            breadCrumbs: value.item
+            );
+          }),
           TextButton(
               onPressed: (){
                 Navigator.of(context).pushNamed('/new');
@@ -97,18 +101,29 @@ class BreadCrumbsWidget extends StatelessWidget {
 
 
 
-class NewPage extends StatelessWidget {
-  const NewPage({super.key});
+class NewBreadCrumbWidget extends StatefulWidget {
+  const NewBreadCrumbWidget({super.key});
 
+  @override
+  State<NewBreadCrumbWidget> createState() => _NewBreadCrumbWidgetState();
+}
+
+class _NewBreadCrumbWidgetState extends State<NewBreadCrumbWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('New Page'),
       ),
-      body: const Center(
-        child: Text('This is a new page'),
-      ),
+      body: Column(
+        children: [
+          TextField(
+
+          ),
+          const SizedBox(height: 20,),
+          Text('Add')
+        ],
+      )
     );
   }
 }
