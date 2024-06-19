@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
         ),
         home: const HomePage(),
         routes: {
-          '/new': (context) => const NewPage(),  // Ensure the route '/new' is defined and points to a valid widget
+          '/new': (context) => const NewBreadCrumbWidget(),  // Ensure the route '/new' is defined and points to a valid widget
         },
       ),
     );
@@ -109,6 +109,22 @@ class NewBreadCrumbWidget extends StatefulWidget {
 }
 
 class _NewBreadCrumbWidgetState extends State<NewBreadCrumbWidget> {
+
+  late final TextEditingController _textEditingController;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    _textEditingController = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _textEditingController.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -118,10 +134,25 @@ class _NewBreadCrumbWidgetState extends State<NewBreadCrumbWidget> {
       body: Column(
         children: [
           TextField(
-
+            decoration: const InputDecoration(
+              hintText: 'Enter a new bread crumb here'
+            ),
+            controller: _textEditingController,
           ),
           const SizedBox(height: 20,),
-          Text('Add')
+          TextButton(
+              onPressed: (){
+                final text = _textEditingController.text;
+                if (text.isNotEmpty){
+                  final breadCrumb = BreadCrumb(isActive: false, name: _textEditingController.text);
+                  context.read<BreadCrumbProvider>().add(
+                     breadCrumb
+                 );
+                  Navigator.of(context).pop();
+                }
+              },
+              child: Text('Add')
+          )
         ],
       )
     );
