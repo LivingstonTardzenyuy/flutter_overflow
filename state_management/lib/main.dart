@@ -91,7 +91,8 @@ class BreadCrumbsWidget extends StatelessWidget {
         return Text(
           breadCrumb.title,
           style: TextStyle(
-            color:  breadCrumb.isActive ? Colors.blue : Colors.black
+            color:  breadCrumb.isActive ? Colors.blue : Colors.black,
+            fontSize: 20
           ),
         );
       }).toList(),
@@ -158,3 +159,5 @@ class _NewBreadCrumbWidgetState extends State<NewBreadCrumbWidget> {
     );
   }
 }
+
+
