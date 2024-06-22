@@ -20,5 +20,5 @@ class ExpensiveObject extends BaseObjects{
 
 
 class CheapObject extends BaseObjects{
-w
+
 }
