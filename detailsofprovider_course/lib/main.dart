@@ -1,4 +1,6 @@
+import 'package:detailsofprovider_course/controller/con.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main(){
   runApp(MyApp());
@@ -9,13 +11,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue
+    return ChangeNotifierProvider(
+      create: (BuildContext context) {
+        ObjectProvider();
+      },
+      child: MaterialApp(
+        title: 'Flutter App',
+        theme: ThemeData(
+          primarySwatch: Colors.blue
+        ),
+        debugShowCheckedModeBanner: false,
+        home: const HomePage()
       ),
-      debugShowCheckedModeBanner: false,
-      home: const HomePage()
     );
   }
 }
@@ -28,7 +35,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.yellow,
+        backgroundColor: Colors.blue,
         title: const Text('HomePage', style: TextStyle(fontSize: 30, color: Colors.purple),),
       ),
     );
