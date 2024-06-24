@@ -1,4 +1,5 @@
 import 'package:detailsofprovider_course/controller/con.dart';
+import 'package:detailsofprovider_course/screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -37,6 +38,20 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.blue,
         title: const Text('HomePage', style: TextStyle(fontSize: 30, color: Colors.purple),),
+      ),
+
+      body: SingleChildScrollView(
+        child: Column(
+          children: const [
+            Row(
+              children: [
+                Expanded(child: CheapWidget()),
+                // const SizedBox(width: 20,),
+                Expanded(child: ExpensiveWidget()),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
