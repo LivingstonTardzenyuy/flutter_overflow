@@ -50,8 +50,27 @@ class HomePage extends StatelessWidget {
             Container(
                 width: double.infinity,
                 child: ObjectProviderWidget()),
+
+            const SizedBox(height: 15,),
+            Row(
+              children: [
+                 TextButton(
+                    onPressed: () {
+                      context.read<ObjectProvider>().start();
+                    },
+                    child: Text('Start')),
+                const SizedBox(width: 10,),
+
+                TextButton(
+                    onPressed: () {
+                      context.read<ObjectProvider>().stop();
+                    },
+                    child: Text('Stop')),
+              ],
+            )
           ],
         ),
+
       ),
     );
   }
