@@ -62,11 +62,15 @@ class ObjectProviderWidget extends StatelessWidget {
       color: Colors.purple,
       child: Column(
         children: [
-          const Text('Object Provider Widget'),
-          const Text('ID'),
+          const Text('Expensive Widget Widget'),
+          const Text('Last Updated'),
           Text(provider.id),
         ],
       ),
     );
   }
 }
+
+
+
+

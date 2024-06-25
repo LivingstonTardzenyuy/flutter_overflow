@@ -38,17 +38,20 @@ class HomePage extends StatelessWidget {
       ),
 
       body: SingleChildScrollView(
-        // child: Column(
-        //   children: const [
-            child: Row(
+        child: Column(
+          children: [
+            Row(
               children: [
                 Expanded(child: CheapWidget()),
                 // const SizedBox(width: 20,),
                 Expanded(child: ExpensiveWidget()),
               ],
-            )
-        //   ],
-        // ),
+            ),
+            Container(
+                width: double.infinity,
+                child: ObjectProviderWidget()),
+          ],
+        ),
       ),
     );
   }
