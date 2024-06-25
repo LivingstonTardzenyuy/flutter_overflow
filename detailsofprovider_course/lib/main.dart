@@ -13,20 +13,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (BuildContext context) {
-        ObjectProvider();
-      },
+      create: (_) => ObjectProvider(),  // Providing ObjectProvider
       child: MaterialApp(
         title: 'Flutter App',
-        theme: ThemeData(
-          primarySwatch: Colors.blue
-        ),
+        theme: ThemeData(primarySwatch: Colors.blue),
         debugShowCheckedModeBanner: false,
-        home: const HomePage()
+        home: const HomePage(),
       ),
     );
   }
 }
+
 
 
 class HomePage extends StatelessWidget {
@@ -41,17 +38,17 @@ class HomePage extends StatelessWidget {
       ),
 
       body: SingleChildScrollView(
-        child: Column(
-          children: const [
-            Row(
+        // child: Column(
+        //   children: const [
+            child: Row(
               children: [
                 Expanded(child: CheapWidget()),
                 // const SizedBox(width: 20,),
                 Expanded(child: ExpensiveWidget()),
               ],
             )
-          ],
-        ),
+        //   ],
+        // ),
       ),
     );
   }
