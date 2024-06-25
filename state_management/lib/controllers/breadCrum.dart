@@ -9,7 +9,7 @@ class BreadCrumbProvider extends ChangeNotifier{
   UnmodifiableListView<BreadCrumb> get item => UnmodifiableListView(_items);  // this provide only read access
 
   void add (BreadCrumb breadCrumb){
-    for (final item in _items){
+    for(final item in _items){
       item.isActivate();
     }
     _items.add(breadCrumb);

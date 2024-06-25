@@ -1,91 +1,27 @@
 import 'package:flutter/material.dart';
 
-void main() {runApp(const MyApp());}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Provider 02',
-      debugShowCheckedModeBanner: false,
+void main(){
+  runApp(
+    MaterialApp(
+      title: 'Provider Overflow',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.blue
       ),
-      home: const MyHomePage(),
-    );
-  }
+      debugShowCheckedModeBanner: false,
+      home: const HomePage()
+    )
+  );
 }
 
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          '-name: Dog name',
-          style: TextStyle(
-            color: Colors.white
-          ),
-          ),
-        backgroundColor: Colors.blue,
-        ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Text(
-              '- name: Dog name',
-              style: TextStyle(fontSize: 20.0),
-            ),
-            SizedBox(height: 10.0,),
-            BreadAndAge(),
-          ],
-        ),
-      ),
-      );
-  }
-}
-
-
-
-class BreadAndAge extends StatelessWidget {
-  const BreadAndAge({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-            '- bread: Dog breed',
-          style: TextStyle(
-            fontSize: 20.0
-          ),
-        ),
-        SizedBox(height: 10.0,),
-        Age(),
-      ],
-    );
-  }
-}
-
-
-class Age extends StatelessWidget {
-  const Age({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Column(
-      children: [
-        Text(
-          '-age: your age',
-          style: TextStyle(fontSize: 20),
-        )
-      ],
+    return Container(
+      color: Colors.red,
+      height: 100,
+      width: double.infinity,
     );
   }
 }
