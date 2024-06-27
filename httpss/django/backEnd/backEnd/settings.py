@@ -29,7 +29,8 @@ ALLOWED_HOSTS = [
     "10.0.2.2",    # needed by our andriod emulator
     "0.0.0.0",
     "localhost",
-    '127.0.0.1'
+    '127.0.0.1',
+    '192.168.100.17',
     # "127.0.0.1"
     # "*"
     
