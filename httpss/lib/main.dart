@@ -30,12 +30,21 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Todo App')
+        title: Text('baemdna'),
+        backgroundColor: Colors.yellow,
       ),
 
       body: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
 
-      ),
+        ),
+        child: const ListTile(
+          title: Text('Learn DRF'),
+          trailing: Text('id'),
+          subtitle: Text('descritp'),
+        ),
+      )
     );
   }
 }
