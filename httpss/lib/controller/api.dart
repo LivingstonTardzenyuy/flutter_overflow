@@ -17,7 +17,7 @@ class TodoProvider with ChangeNotifier{
 
     if (response.statusCode == 200){
       log('got results');
-      var data = json.decode(response.body) as List;
+      List<dynamic> data = json.decode(response.body) as List;
       _todos = data.map<Todo>((json) => Todo.fromJson(json)).toList();
       log('todos: $_todos');
       notifyListeners();

@@ -39,14 +39,14 @@ class MyHomePage extends StatelessWidget {
     context.read<TodoProvider>().fetchTasks();
     return Scaffold(
       appBar: AppBar(
-        title: Text('baemdna'),
+        title: const Text('Bamenda'),
         backgroundColor: Colors.yellow,
       ),
 
       body: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-
+          // color: Colors.blue
         ),
         child: Consumer<TodoProvider>(
           builder: (BuildContext context, TodoProvider todoProvider, Widget? child) {
@@ -61,7 +61,13 @@ class MyHomePage extends StatelessWidget {
                 itemBuilder: (context, index){
                   final todo = todoProvider.todos[index];
                   return ListTile(
-                    title: Text(todo.title),
+                    title: Text(
+                        todo.title,
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600
+                      ),
+                    ),
                     trailing: Text(todo.id.toString()),
                     subtitle: Text(todo.description),
                   );
