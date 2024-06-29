@@ -27,4 +27,16 @@ class TodoProvider with ChangeNotifier{
       throw Exception('Failed to load todos');
     }
   }
+
+  // Future<void> addTasks(Todo todo) async {
+  //   try{
+  //     final Response response  = await http.post(
+  //         Uri.parse('$baseUrl/?format=json'),
+  //             headers: {"Content-Type": "application/json"},
+  //             body: json.encode(todo)
+  //         );
+  //
+  //   }
+  //
+  // }
 }

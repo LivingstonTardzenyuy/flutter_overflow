@@ -42,7 +42,10 @@ class MyHomePage extends StatelessWidget {
         title: const Text('Bamenda'),
         backgroundColor: Colors.yellow,
       ),
-
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){},
+        child: Icon(Icons.add),
+      ),
       body: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
@@ -78,6 +81,21 @@ class MyHomePage extends StatelessWidget {
           },
         ),
       )
+    );
+  }
+}
+
+
+
+class AddTodo extends StatelessWidget {
+  const AddTodo({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+
+      ),
     );
   }
 }
