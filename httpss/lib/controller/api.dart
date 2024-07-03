@@ -39,7 +39,7 @@ class TodoProvider with ChangeNotifier {
   Future<void> addTasks(Todo todo) async{
     try{
       final response = await http.post(
-          Uri.parse("$baseUrl",
+          Uri.parse("$baseUrl/",
           ),
         headers: {"Content-Type": "application/json"},
         body: jsonEncode(

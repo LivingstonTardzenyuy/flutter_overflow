@@ -3,6 +3,7 @@ import 'package:httpss/controller/api.dart';
 import 'package:provider/provider.dart';
 
 import 'appconstants/appconst.dart';
+import 'models/todo.dart';
 
 void main() {
   runApp(const MyApp());
@@ -113,10 +114,21 @@ class _AddTodoState extends State<AddTodo> {
   final TextEditingController titleController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
 
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    titleController.dispose();
+    descriptionController.dispose();
+    super.dispose();
+  }
+
   void _handleSubmit() {
     String title = titleController.text;
     String description = descriptionController.text;
-
+    if (title.isNotEmpty && description.isNotEmpty){
+      final Todo todo = Todo(id: null, title: title.trim(), description: description.trim());
+      context.read<TodoProvider>().addTasks(todo);
+    }
   }
 
   @override
