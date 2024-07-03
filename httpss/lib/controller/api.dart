@@ -63,12 +63,16 @@ class TodoProvider with ChangeNotifier {
   }
 
   Future<void> deleteTask(Todo todo) async{
-    final response = await http.delete(
-        Uri.parse("$baseUrl/${todo.id}"));
+    try{
+      final response = await http.delete(
+          Uri.parse("$baseUrl/${todo.id}"));
 
-    if (response.statusCode == 204){
-      _todos.remove(todo);
-      notifyListeners();
+      if (response.statusCode == 204){
+        _todos.remove(todo);
+        notifyListeners();
+      }
+    } catch(e){
+      throw Exception('Failed to delete $e');
     }
   }
 }

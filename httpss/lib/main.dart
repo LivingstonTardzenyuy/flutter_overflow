@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:httpss/controller/api.dart';
 import 'package:provider/provider.dart';
@@ -87,7 +89,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     trailing: IconButton(
                         onPressed: () {
-
+                          log("You want to delete this $todo");
+                          context.read<TodoProvider>().deleteTask(todo);
                         },
                         icon: Icon(Icons.delete, color: Colors.red,)),
                     subtitle: Text(todo.description),
