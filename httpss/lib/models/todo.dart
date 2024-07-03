@@ -1,9 +1,9 @@
 class Todo{
-  final int id;
+  int? id;
   final String title;
   final String description;
 
-  Todo({required this.id,required this.title,required this.description});
+  Todo({this.id,required this.title,required this.description});
   // Getting the data from server
   factory Todo.fromJson(Map<String, dynamic> json){
     return Todo(
@@ -15,7 +15,7 @@ class Todo{
 
   // Sending the data to server
   dynamic toJson() => {
-    'id': DateTime.now(),
+    'id': id,   // because it will be done from backEnd
     'title': title,
     'description': description
   };

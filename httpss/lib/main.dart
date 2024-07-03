@@ -85,7 +85,11 @@ class _MyHomePageState extends State<MyHomePage> {
                           fontWeight: FontWeight.w600
                       ),
                     ),
-                    trailing: Text(todo.id.toString()),
+                    trailing: IconButton(
+                        onPressed: () {
+
+                        },
+                        icon: Icon(Icons.delete, color: Colors.red,)),
                     subtitle: Text(todo.description),
                   );
                 },
@@ -126,8 +130,9 @@ class _AddTodoState extends State<AddTodo> {
     String title = titleController.text;
     String description = descriptionController.text;
     if (title.isNotEmpty && description.isNotEmpty){
-      final Todo todo = Todo(id: null, title: title.trim(), description: description.trim());
+      final Todo todo = Todo(title: title.trim(), description: description.trim());
       context.read<TodoProvider>().addTasks(todo);
+      Navigator.pop(context);
     }
   }
 

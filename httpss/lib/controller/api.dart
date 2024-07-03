@@ -43,19 +43,32 @@ class TodoProvider with ChangeNotifier {
           ),
         headers: {"Content-Type": "application/json"},
         body: jsonEncode(
-          todo
+          todo.toJson(),
         )
       );
 
       if (response.statusCode == 201){
+        todo.id = json.decode(response.body)['id'];   // specifiying the id
+        _todos.add(todo);
         var data = jsonDecode(response.body);
         log('Task created: $data');
+        notifyListeners();
       } else {
         throw Exception('Failed to create task');
       }
     } catch (e){
       log ('Exception: $e');
       throw Exception(("Failed to add todo"));
+    }
+  }
+
+  Future<void> deleteTask(Todo todo) async{
+    final response = await http.delete(
+        Uri.parse("$baseUrl/${todo.id}"));
+
+    if (response.statusCode == 204){
+      _todos.remove(todo);
+      notifyListeners();
     }
   }
 }
