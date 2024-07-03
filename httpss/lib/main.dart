@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:httpss/controller/api.dart';
 import 'package:provider/provider.dart';
 
+import 'appconstants/appconst.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -31,70 +33,136 @@ class MyApp extends StatelessWidget {
 }
 
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
 
   @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+
+  void initState() {
+    super.initState();
+    Provider.of<TodoProvider>(context, listen: false).fetchTasks();
+  }
+  @override
   Widget build(BuildContext context) {
-    context.read<TodoProvider>().fetchTasks();
+    // context.read<TodoProvider>().fetchTasks();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Bamenda'),
         backgroundColor: Colors.yellow,
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: (){},
-        child: Icon(Icons.add),
+        shape: CircleBorder(),
+        onPressed: (){
+          Navigator.push(context, MaterialPageRoute(builder: (context) => AddTodo()));
+        },
+        child: Icon(Icons.add, color: Colors.white,),
       ),
       body: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          // color: Colors.blue
         ),
         child: Consumer<TodoProvider>(
-          builder: (BuildContext context, TodoProvider todoProvider, Widget? child) {
-            if (todoProvider.todos.isEmpty){
-              return Center(
-                child: CircularProgressIndicator(),
+          builder: (BuildContext context, TodoProvider todoData, Widget? child) {
+            if (todoData.todos.isEmpty){
+              return const Center(
+                child: const CircularProgressIndicator(),
               );
-            }
-            else {
+            } else {
               return ListView.builder(
-                itemCount: todoProvider.todos.length,
-                itemBuilder: (context, index){
-                  final todo = todoProvider.todos[index];
+                itemCount: todoData.todos.length,
+                itemBuilder: (BuildContext context, int index) {
+                  final todo = todoData.todos[index];
                   return ListTile(
-                    title: Text(
-                        todo.title,
+                    title:  Text(
+                      todo.title,
                       style: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600
                       ),
                     ),
                     trailing: Text(todo.id.toString()),
                     subtitle: Text(todo.description),
                   );
                 },
-
               );
             }
-          },
-        ),
-      )
-    );
+
+            },
+
+          )
+        )
+      );
   }
 }
 
 
 
-class AddTodo extends StatelessWidget {
+class AddTodo extends StatefulWidget {
   const AddTodo({super.key});
+
+  @override
+  State<AddTodo> createState() => _AddTodoState();
+}
+
+class _AddTodoState extends State<AddTodo> {
+
+  final TextEditingController titleController = TextEditingController();
+  final TextEditingController descriptionController = TextEditingController();
+
+  void _handleSubmit() {
+    String title = titleController.text;
+    String description = descriptionController.text;
+
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+      body: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TextFieldss(
+              textEditingController: titleController,
+            ),
 
+            const SizedBox(height: 10,),
+            TextFieldss(
+              textEditingController: descriptionController,
+            ),
+
+
+            const SizedBox(height: 20,),
+            InkWell(
+              onTap: () {
+                _handleSubmit();
+              },
+              child: Container(
+                width: double.infinity,
+                height: 50,
+                decoration: BoxDecoration(
+                  color: Colors.orange,
+                  borderRadius: BorderRadius.circular(10)
+                ),
+                child: Center(
+                  child: Text(
+                      'Add Todo',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w800,
+                      fontSize: 20
+                    ),
+                  ),
+                ),
+              ),
+            )
+
+          ],
+        ),
       ),
     );
   }

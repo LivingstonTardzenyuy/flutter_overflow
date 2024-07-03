@@ -13,7 +13,6 @@ class Todo{
     );
   }
 
-
   // Sending the data to server
   dynamic toJson() => {
     'id': DateTime.now(),
@@ -22,3 +21,8 @@ class Todo{
   };
 
 }
+
+
+
+
+
