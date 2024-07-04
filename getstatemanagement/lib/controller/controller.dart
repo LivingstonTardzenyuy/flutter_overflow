@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:get/get.dart';
 
 class TapController extends GetxController{
@@ -6,5 +8,12 @@ class TapController extends GetxController{
 
   void increaseX(){
     _x++;
+    log(_x.toString());
+    update();
+  }
+
+  void decrease(){
+    _x--;
+    update();
   }
 }
