@@ -12,7 +12,7 @@ class TodoProvider with ChangeNotifier {
 
   // static const String baseUrl = 'http://127.0.0.1:8000/apis/v1';
   // static const String baseUrl = 'http://192.168.100.17:8000/apis/v1';
-  static const String baseUrl = 'http://192.168.100.3:8000/apis/v1';
+  static const String baseUrl = 'http://192.168.100.26:8000/apis/v1';
   Future<void> fetchTasks() async {
     log('Fetching tasks from $baseUrl');
     try{
@@ -33,7 +33,6 @@ class TodoProvider with ChangeNotifier {
       log('Exception: $e');
       throw Exception('Failed to load todos');
     }
-
   }
 
   Future<void> addTasks(Todo todo) async{
@@ -65,7 +64,7 @@ class TodoProvider with ChangeNotifier {
   Future<void> deleteTask(Todo todo) async{
     try{
       final response = await http.delete(
-          Uri.parse("$baseUrl/${todo.id}"));
+          Uri.parse("$baseUrl/${todo.id}/"));
 
       if (response.statusCode == 204){
         _todos.remove(todo);

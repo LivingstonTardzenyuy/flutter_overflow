@@ -2,10 +2,13 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:httpss/controller/api.dart';
+import 'package:httpss/todo/display_todo.dart';
 import 'package:provider/provider.dart';
 
 import 'appconstants/appconst.dart';
+import 'controller/notes.dart';
 import 'models/todo.dart';
+import 'notes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,6 +24,7 @@ class MyApp extends StatelessWidget {
 
       providers: [
         ChangeNotifierProvider(create: (context) => TodoProvider()),
+        ChangeNotifierProvider(create: (context) => NotesController()),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
@@ -29,161 +33,38 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const MyHomePage(),
+        home: const Sepearation(),
       ),
     );
   }
 }
 
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+class Sepearation extends StatelessWidget {
+  const Sepearation({super.key});
 
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-
-  void initState() {
-    super.initState();
-    Provider.of<TodoProvider>(context, listen: false).fetchTasks();
-  }
   @override
   Widget build(BuildContext context) {
-    // context.read<TodoProvider>().fetchTasks();
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Bamenda'),
-        backgroundColor: Colors.yellow,
+
       ),
-      floatingActionButton: FloatingActionButton(
-        shape: CircleBorder(),
-        onPressed: (){
-          Navigator.push(context, MaterialPageRoute(builder: (context) => AddTodo()));
-        },
-        child: Icon(Icons.add, color: Colors.white,),
-      ),
-      body: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Consumer<TodoProvider>(
-          builder: (BuildContext context, TodoProvider todoData, Widget? child) {
-            if (todoData.todos.isEmpty){
-              return const Center(
-                child: const CircularProgressIndicator(),
-              );
-            } else {
-              return ListView.builder(
-                itemCount: todoData.todos.length,
-                itemBuilder: (BuildContext context, int index) {
-                  final todo = todoData.todos[index];
-                  return ListTile(
-                    title:  Text(
-                      todo.title,
-                      style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600
-                      ),
-                    ),
-                    trailing: IconButton(
-                        onPressed: () {
-                          log("You want to delete this $todo");
-                          context.read<TodoProvider>().deleteTask(todo);
-                        },
-                        icon: Icon(Icons.delete, color: Colors.red,)),
-                    subtitle: Text(todo.description),
-                  );
-                },
-              );
-            }
+      body: Row(
+        children: [
+          TextButton(onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context) => MyHomePage()));
+          },
+              child: Text('Todos')),
 
-            },
+          TextButton(onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context) => NotesSection()));
 
-          )
-        )
-      );
-  }
-}
+          },
+              child: Text('Notes')),
 
-
-
-class AddTodo extends StatefulWidget {
-  const AddTodo({super.key});
-
-  @override
-  State<AddTodo> createState() => _AddTodoState();
-}
-
-class _AddTodoState extends State<AddTodo> {
-
-  final TextEditingController titleController = TextEditingController();
-  final TextEditingController descriptionController = TextEditingController();
-
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    titleController.dispose();
-    descriptionController.dispose();
-    super.dispose();
-  }
-
-  void _handleSubmit() {
-    String title = titleController.text;
-    String description = descriptionController.text;
-    if (title.isNotEmpty && description.isNotEmpty){
-      final Todo todo = Todo(title: title.trim(), description: description.trim());
-      context.read<TodoProvider>().addTasks(todo);
-      Navigator.pop(context);
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            TextFieldss(
-              textEditingController: titleController,
-            ),
-
-            const SizedBox(height: 10,),
-            TextFieldss(
-              textEditingController: descriptionController,
-            ),
-
-
-            const SizedBox(height: 20,),
-            InkWell(
-              onTap: () {
-                _handleSubmit();
-              },
-              child: Container(
-                width: double.infinity,
-                height: 50,
-                decoration: BoxDecoration(
-                  color: Colors.orange,
-                  borderRadius: BorderRadius.circular(10)
-                ),
-                child: Center(
-                  child: Text(
-                      'Add Todo',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w800,
-                      fontSize: 20
-                    ),
-                  ),
-                ),
-              ),
-            )
-
-          ],
-        ),
+        ],
       ),
     );
   }
 }
+

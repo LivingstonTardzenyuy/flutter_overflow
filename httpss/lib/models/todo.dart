@@ -19,7 +19,6 @@ class Todo{
     'title': title,
     'description': description
   };
-
 }
 
 
