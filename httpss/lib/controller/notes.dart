@@ -10,10 +10,13 @@ class NotesController extends ChangeNotifier{
 
   static const String baseUrl = 'http://192.168.100.26:8000/apis/v1';
 
+  NotesController(){
+    fetchNotes();
+  }
   Future<void> fetchNotes() async{
     log("Fetching Notes");
     try{
-      final Response response = await http.get(Uri.parse('$baseUrl/notes/'));
+      final Response response = await http.get(Uri.parse('$baseUrl/notes/?format=json'));
       log('Response status code: ${response.statusCode}');
 
       if (response.statusCode == 200){
@@ -22,10 +25,14 @@ class NotesController extends ChangeNotifier{
         _notes = data.map<Notes>((json) => Notes.fromJson(json)).toList();
         log('todos : $_notes');
         notifyListeners();
+      } else{
+        log('error: ${response.statusCode} - ${response.body}');
+        throw Exception("Failed to load Notes");
       }
     } catch(e){
       log('Error fetching: $e');
       throw Exception('Error Fetching Notes');
     }
   }
+
 }
