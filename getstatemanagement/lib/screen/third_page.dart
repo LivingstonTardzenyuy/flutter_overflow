@@ -19,19 +19,47 @@ class ThirdPage extends StatelessWidget {
           icon: Icon(Icons.arrow_back_ios), color: Colors.black,
         ),
       ),
-      body: Container(
-        height: 100,
-        width: double.infinity,
-        color: Colors.orange,
-        child: Center(
-          child: Text(
-            controller.x.toString(),
-            style: TextStyle(
-              fontSize: 30
+      body: Column(
+        children: [
+          Container(
+            height: 100,
+            width: double.infinity,
+            color: Colors.orange,
+            child: Center(
+              child: Text(
+                "X value ${controller.x.toString()}",
+                style: TextStyle(
+                  fontSize: 30
+                ),
+                // style: T,
+              ),
             ),
-            // style: T,
           ),
-        ),
+
+
+
+          InkWell(
+            onTap: (){
+              Get.find<TapController>().increaseY();
+            },
+            child: Container(
+              height: 100,
+              width: double.infinity,
+              color: Colors.orange,
+              child: Center(
+                child: Text(
+                  // Get.find<TapController>().de
+                  style: TextStyle(
+                      fontSize: 30
+                  ),
+                  // style: T,
+                ),
+              ),
+            ),
+          ),
+
+
+        ],
       ),
     );
   }

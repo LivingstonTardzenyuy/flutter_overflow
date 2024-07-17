@@ -22,13 +22,13 @@ class TapController extends GetxController{
 
 
   void increaseY(){
-    _y++;
+    _y.value++;
     log(_y.toString());
     update();
   }
 
   void decreaseY(){
-    _y--;
+    _y.value--;
     update();
   }
 }
