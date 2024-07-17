@@ -4,8 +4,11 @@ import 'package:get/get.dart';
 
 class TapController extends GetxController{
   int _x = 0;
+
   int get x => _x;
 
+  RxInt _y = 0.obs;
+  RxInt get y => _y;
   void increaseX(){
     _x++;
     log(_x.toString());
@@ -14,6 +17,18 @@ class TapController extends GetxController{
 
   void decrease(){
     _x--;
+    update();
+  }
+
+
+  void increaseY(){
+    _y++;
+    log(_y.toString());
+    update();
+  }
+
+  void decreaseY(){
+    _y--;
     update();
   }
 }
