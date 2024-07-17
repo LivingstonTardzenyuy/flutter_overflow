@@ -9,6 +9,10 @@ class TapController extends GetxController{
 
   RxInt _y = 0.obs;
   RxInt get y => _y;
+
+  RxInt _total = 0.obs;
+  RxInt get total => _total;
+
   void increaseX(){
     _x++;
     log(_x.toString());
@@ -29,6 +33,12 @@ class TapController extends GetxController{
 
   void decreaseY(){
     _y.value--;
+    update();
+  }
+
+  void addXandY(){
+    _total.value = _x + _y.value;
+    log(_total.value.toString());
     update();
   }
 }

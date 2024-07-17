@@ -21,6 +21,49 @@ class ThirdPage extends StatelessWidget {
       ),
       body: Column(
         children: [
+
+          Obx(() =>    Container(
+            margin: const EdgeInsets.all(20),
+            width: double.maxFinite,
+            height: 100,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              color: Color(0xFF80dad0),
+            ),
+            child: Center(
+              child: Center(
+                child: Text(
+                  Get.find<TapController>().total.toString(),
+                  style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.white
+                  ),
+                ),
+              ),
+            ),
+          ),),
+
+          SizedBox(height: 15,),
+          Obx(() => Center(
+            child: Container(
+              height: 100,
+              width: double.infinity,
+              color: Colors.orange,
+              child: Center(
+                child: Text(
+                  // Get.find<TapController>().de
+                  "Y Value ${Get.find<TapController>().y.toString()}",
+                  style: TextStyle(
+                      fontSize: 30
+                  ),
+                  // style: T,
+                ),
+              ),
+            ),
+          ),
+          ),
+
+          SizedBox(height: 15,),
           Container(
             height: 100,
             width: double.infinity,
@@ -38,6 +81,7 @@ class ThirdPage extends StatelessWidget {
 
 
 
+          SizedBox(height: 15,),
           InkWell(
             onTap: (){
               Get.find<TapController>().increaseY();
@@ -49,6 +93,29 @@ class ThirdPage extends StatelessWidget {
               child: Center(
                 child: Text(
                   // Get.find<TapController>().de
+                  "Y Value Increase",
+                  style: TextStyle(
+                      fontSize: 30
+                  ),
+                  // style: T,
+                ),
+              ),
+            ),
+          ),
+
+
+          SizedBox(height: 15,),
+          InkWell(
+            onTap: (){
+              Get.find<TapController>().addXandY();
+            },
+            child: Container(
+              height: 100,
+              width: double.infinity,
+              color: Colors.orange,
+              child: Center(
+                child: Text(
+                  "X + Y",
                   style: TextStyle(
                       fontSize: 30
                   ),
