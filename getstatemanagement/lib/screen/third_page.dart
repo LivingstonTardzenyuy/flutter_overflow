@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:getstatemanagement/controller/controller.dart';
+import 'package:getstatemanagement/controller/list_controllers.dart';
 
 
 class ThirdPage extends StatelessWidget {
@@ -10,6 +11,7 @@ class ThirdPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TapController controller = Get.find();
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -19,114 +21,160 @@ class ThirdPage extends StatelessWidget {
           icon: Icon(Icons.arrow_back_ios), color: Colors.black,
         ),
       ),
-      body: Column(
-        children: [
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
 
-          Obx(() =>    Container(
-            margin: const EdgeInsets.all(20),
-            width: double.maxFinite,
-            height: 100,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              color: Color(0xFF80dad0),
-            ),
-            child: Center(
+            Obx(() =>    Container(
+              margin: const EdgeInsets.all(20),
+              width: double.maxFinite,
+              height: 100,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: Color(0xFF80dad0),
+              ),
               child: Center(
-                child: Text(
-                  Get.find<TapController>().total.toString(),
-                  style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.white
+                child: Center(
+                  child: Text(
+                    Get.find<TapController>().total.toString(),
+                    style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.white
+                    ),
+                  ),
+                ),
+              ),
+            ),),
+
+            SizedBox(height: 15,),
+            Obx(() => Center(
+              child: Container(
+                height: 100,
+                width: double.infinity,
+                color: Colors.orange,
+                child: Center(
+                  child: Text(
+                    // Get.find<TapController>().de
+                    "Y Value ${Get.find<TapController>().y.toString()}",
+                    style: TextStyle(
+                        fontSize: 30
+                    ),
+                    // style: T,
                   ),
                 ),
               ),
             ),
-          ),),
+            ),
 
-          SizedBox(height: 15,),
-          Obx(() => Center(
-            child: Container(
+            SizedBox(height: 15,),
+            Container(
               height: 100,
               width: double.infinity,
               color: Colors.orange,
               child: Center(
                 child: Text(
-                  // Get.find<TapController>().de
-                  "Y Value ${Get.find<TapController>().y.toString()}",
+                  "X value ${controller.x.toString()}",
                   style: TextStyle(
-                      fontSize: 30
+                    fontSize: 30
                   ),
                   // style: T,
                 ),
               ),
             ),
-          ),
-          ),
-
-          SizedBox(height: 15,),
-          Container(
-            height: 100,
-            width: double.infinity,
-            color: Colors.orange,
-            child: Center(
-              child: Text(
-                "X value ${controller.x.toString()}",
-                style: TextStyle(
-                  fontSize: 30
-                ),
-                // style: T,
-              ),
-            ),
-          ),
 
 
 
-          SizedBox(height: 15,),
-          InkWell(
-            onTap: (){
-              Get.find<TapController>().increaseY();
-            },
-            child: Container(
-              height: 100,
-              width: double.infinity,
-              color: Colors.orange,
-              child: Center(
-                child: Text(
-                  // Get.find<TapController>().de
-                  "Y Value Increase",
-                  style: TextStyle(
-                      fontSize: 30
+            SizedBox(height: 15,),
+            InkWell(
+              onTap: (){
+                Get.find<TapController>().increaseY();
+              },
+              child: Container(
+                height: 100,
+                width: double.infinity,
+                color: Colors.orange,
+                child: Center(
+                  child: Text(
+                    // Get.find<TapController>().de
+                    "Y Value Increase",
+                    style: TextStyle(
+                        fontSize: 30
+                    ),
+                    // style: T,
                   ),
-                  // style: T,
                 ),
               ),
             ),
-          ),
 
 
-          SizedBox(height: 15,),
-          InkWell(
-            onTap: (){
-              Get.find<TapController>().addXandY();
-            },
-            child: Container(
-              height: 100,
-              width: double.infinity,
-              color: Colors.orange,
-              child: Center(
-                child: Text(
-                  "X + Y",
-                  style: TextStyle(
-                      fontSize: 30
+            SizedBox(height: 15,),
+            InkWell(
+              onTap: (){
+                Get.find<TapController>().addXandY();
+              },
+              child: Container(
+                height: 100,
+                width: double.infinity,
+                color: Colors.orange,
+                child: Center(
+                  child: Text(
+                    "X + Y",
+                    style: TextStyle(
+                        fontSize: 30
+                    ),
+                    // style: T,
                   ),
-                  // style: T,
                 ),
               ),
             ),
-          ),
 
 
-        ],
+            SizedBox(height: 15,),
+
+            InkWell(
+              onTap: (){
+                Get.find<ListController>().setValues(controller.total.value);
+              },
+              child: Container(
+                height: 100,
+                width: double.infinity,
+                color: Colors.orange,
+                child: Center(
+                  child: Text(
+                    "List",
+                    style: TextStyle(
+                        fontSize: 30
+                    ),
+                    // style: T,
+                  ),
+                ),
+              ),
+            ),
+
+
+            InkWell(
+              onTap: (){
+                final listController = Get.find<ListController>();
+                listController.changeTheme();              },
+              child: Container(
+                height: 100,
+                width: double.infinity,
+                color: Colors.orange,
+                child: Center(
+                  child: Text(
+                    "Dark-light",
+                    style: TextStyle(
+                        fontSize: 30
+                    ),
+                    // style: T,
+                  ),
+                ),
+              ),
+            ),
+
+
+          ],
+        ),
       ),
     );
   }

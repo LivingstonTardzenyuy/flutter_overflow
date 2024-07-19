@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:getstatemanagement/controller/list_controllers.dart';
 
 import 'home/my_home_page.dart';
+import 'helper/init_controller.dart' as di;
 
+void main() async{
 
-void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  await di.init();
   runApp(
     MyApp(),);
 }
@@ -15,16 +21,13 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+    ListController listController = Get.find();
+    return Obx(() => GetMaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
+      theme: listController.theme, // Apply the theme from the controller
 
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-
-      ),
       home: MyHomePage(),
-    );
+    ));
   }
 }
 
