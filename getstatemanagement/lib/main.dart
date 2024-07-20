@@ -8,7 +8,6 @@ import 'home/my_home_page.dart';
 import 'helper/init_controller.dart' as di;
 
 void main() async{
-
   WidgetsFlutterBinding.ensureInitialized();
   await di.init();
   runApp(

@@ -7,6 +7,11 @@ class ListController extends GetxController{
 
   Rx<ThemeData> _theme = ThemeData.light().obs;
   ThemeData get theme => _theme.value;
+
+
+
+  final String title = 'My Awesome View';
+
   void setValues(int x){
     _list.add(x);
     print(_list);

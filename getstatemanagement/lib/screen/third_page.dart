@@ -155,7 +155,9 @@ class ThirdPage extends StatelessWidget {
             InkWell(
               onTap: (){
                 final listController = Get.find<ListController>();
-                listController.changeTheme();              },
+                listController.changeTheme();
+                },
+              
               child: Container(
                 height: 100,
                 width: double.infinity,

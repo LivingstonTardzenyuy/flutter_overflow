@@ -6,6 +6,8 @@ import 'package:get/get_navigation/get_navigation.dart';
 import 'package:getstatemanagement/controller/controller.dart';
 import 'package:getstatemanagement/screen/third_page.dart';
 
+import 'awersome.dart';
+
 class SecondPage extends StatelessWidget {
   const SecondPage({super.key});
 
@@ -97,6 +99,49 @@ class SecondPage extends StatelessWidget {
                 ),
               ),
 
+
+              GestureDetector(
+                onTap: () {
+                  // void showDialogBox() {
+                    Get.defaultDialog(
+                      title: "Theme Change",
+                      content: Text("Do you want to change the theme?"),
+                      onCancel: () {},
+                      onConfirm: () {
+                        // toggleTheme();
+                        Get.back();
+                        Get.back();
+
+                      }
+                    );
+                  // }
+                  Get.snackbar(
+                    "Snackbar Title",
+                    "This is a snackbar message.",
+                    snackPosition: SnackPosition.BOTTOM,
+                    backgroundColor: Colors.black,
+                    colorText: Colors.white,
+                  );
+
+                  },
+                child: Container(
+                  margin: const EdgeInsets.all(20),
+                  width: double.maxFinite,
+                  height: 100,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Color(0xFF80dad0),
+                  ),
+                  child: Center(
+                    child: Text('Awersome View',
+                      style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.white
+                      ),
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         )
