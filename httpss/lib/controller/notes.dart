@@ -1,38 +1,41 @@
 import 'dart:convert';
-import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'package:http/http.dart';
-import '../models/notes.dart';
 import 'dart:developer';
-class NotesController extends ChangeNotifier{
-  List<Notes> _notes = [];
-  List<Notes> get notes => _notes;
+import 'package:get/state_manager.dart';
+import 'package:http/http.dart' as http;
+import 'package:httpss/models/notes.dart';
+import 'package:httpss/todo/notes.dart';
 
-  static const String baseUrl = 'http://192.168.100.26:8000/apis/v1';
+import '../models/todo.dart';
 
-  NotesController(){
-    fetchNotes();
-  }
-  Future<void> fetchNotes() async{
-    log("Fetching Notes");
+
+class NoteController extends GetxController{
+  var _todos = <Notes>[].obs;
+
+  RxList<Notes> get notes => _todos;
+
+
+  static const String baseUrl = 'http://192.168.52.247:8000/apis/v1';
+
+  Future<void> fetchTasks() async{
+    log("Fetching Todo's");
     try{
-      final Response response = await http.get(Uri.parse('$baseUrl/notes/?format=json'));
-      log('Response status code: ${response.statusCode}');
-
+      final  response = await http.get(
+        Uri.parse("$baseUrl/notes/?format=json")
+      );
       if (response.statusCode == 200){
-        log('got results: ${response.body}');
-        List<dynamic> data = json.decode(response.body) as List;
-        _notes = data.map<Notes>((json) => Notes.fromJson(json)).toList();
-        log('todos : $_notes');
-        notifyListeners();
-      } else{
-        log('error: ${response.statusCode} - ${response.body}');
-        throw Exception("Failed to load Notes");
+       log('Got resulst: ${response.statusCode}');
+       List<dynamic> data = json.decode(response.body) as List;
+       _todos.value = data.map<Notes>((json) => Notes.fromJson(json)).toList();
+       update();
       }
     } catch(e){
-      log('Error fetching: $e');
-      throw Exception('Error Fetching Notes');
+      throw Exception("Failed to fetch Notes $e");
     }
   }
+
+
+  Future<void> addTasks async{
+    log('Adding Tasks to Todo')
+}
 
 }

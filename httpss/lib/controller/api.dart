@@ -12,7 +12,7 @@ class TodoProvider with ChangeNotifier {
 
   // static const String baseUrl = 'http://127.0.0.1:8000/apis/v1';
   // static const String baseUrl = 'http://192.168.100.17:8000/apis/v1';
-  static const String baseUrl = 'http://192.168.100.26:8000/apis/v1';
+  static const String baseUrl = 'http://192.168.52.247:8000/apis/v1';
   Future<void> fetchTasks() async {
     log('Fetching tasks from $baseUrl');
     try{

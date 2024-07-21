@@ -2,15 +2,18 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:httpss/controller/api.dart';
+import 'package:httpss/helper/help.dart';
 import 'package:httpss/todo/display_todo.dart';
 import 'package:provider/provider.dart';
-
 import 'appconstants/appconst.dart';
 import 'controller/notes.dart';
 import 'models/todo.dart';
-import 'notes.dart';
+import 'todo/notes.dart';
+import 'package:get/get.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await init();
   runApp(const MyApp());
 }
 
@@ -24,9 +27,8 @@ class MyApp extends StatelessWidget {
 
       providers: [
         ChangeNotifierProvider(create: (context) => TodoProvider()),
-        ChangeNotifierProvider(create: (context) => NotesController()),
       ],
-      child: MaterialApp(
+      child: GetMaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
 
